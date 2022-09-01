@@ -1,42 +1,46 @@
 package com.ieti.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.ieti.entities.User;
 
+@Service
 public class UserServiceHashMap implements UserService{
 
-    private HashMap<String, Object> usmap = new HashMap<String, Object>();
+    private HashMap<String, User> usmap = new HashMap<String, User>();
 
     @Override
     public User create(User user) {
-        // TODO Auto-generated method stub
-        return null;
+        usmap.put(user.getId(), user);
+        return user;
     }
 
     @Override
     public User findById(String id) {
-        // TODO Auto-generated method stub
-        return null;
+        if(usmap.get(id) == null){return null;}
+        return usmap.get(id);
     }
 
     @Override
     public List<User> getAll() {
-        // TODO Auto-generated method stub
-        return null;
+        List<User> users = new ArrayList<>();
+        users.addAll(usmap.values());
+        return users;
     }
 
     @Override
     public void deleteById(String id) {
-        // TODO Auto-generated method stub
-        
+        usmap.remove(id);
     }
 
     @Override
     public User update(User user, String userId) {
-        // TODO Auto-generated method stub
-        return null;
+        usmap.replace(userId, user);
+        return user;
     }
     
 }
