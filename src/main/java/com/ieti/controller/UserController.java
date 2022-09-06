@@ -16,7 +16,7 @@ import com.ieti.service.UserService;
 public class UserController {
 
     private final UserService userService;
-    private ModelMapper modelMapper = new ModelMapper();
+    private final ModelMapper modelMapper = new ModelMapper();
 
     @Autowired
     public UserController(UserService userService){
