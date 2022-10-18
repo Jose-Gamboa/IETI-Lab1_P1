@@ -16,15 +16,15 @@ import com.ieti.service.UserService;
 public class UserController {
 
     private final UserService userService;
-    private final ModelMapper modelMapper = new ModelMapper();
 
     @Autowired
-    public UserController(UserService userService){
+    public UserController( UserService userService){
         this.userService = userService;
     }
 
     @GetMapping
     public ResponseEntity<List<UserDto>> getAll() {
+        ModelMapper modelMapper = new ModelMapper();
         List<User> response = userService.getAll();
         List<UserDto> converse = new ArrayList<UserDto>();
         for (User user:response){
@@ -35,6 +35,7 @@ public class UserController {
 
     @GetMapping( "/{id}" )
     public ResponseEntity<UserDto> findById( @PathVariable String id ) {
+        ModelMapper modelMapper = new ModelMapper();
         UserDto response = modelMapper.map(userService.findById(id), UserDto.class);
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
@@ -42,12 +43,14 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<UserDto> create( @RequestBody UserDto userDto ) {
+        ModelMapper modelMapper = new ModelMapper();
         userService.create(modelMapper.map(userDto, User.class));
         return new ResponseEntity<>(userDto, HttpStatus.ACCEPTED);
     }
 
     @PutMapping( "/{id}" )
     public ResponseEntity<UserDto> update( @RequestBody UserDto user, @PathVariable String id ) {
+        ModelMapper modelMapper = new ModelMapper();
         userService.update(modelMapper.map(user, User.class), id);
         return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
     }

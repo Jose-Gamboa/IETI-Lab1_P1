@@ -1,5 +1,7 @@
 package com.ieti.dto;
 
+import java.time.LocalDate;
+
 public class UserDto{
     
     private String id;
@@ -8,7 +10,22 @@ public class UserDto{
     private String lastName;
     private String createdAt;
 
-    public UserDto() {
+    public UserDto(){
+        this.id = String.valueOf((int)(Math.random()*9));
+        this.createdAt = LocalDate.now().toString();
+    }
+
+    public UserDto(String name, String email, String lastName){
+        this();
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
+    public UserDto(String id,String name, String email, String lastName, String createdAt){
+        this(name, email, lastName);
+        this.id = id;
+        this.createdAt = createdAt;
     }
 
     public String getId() {
