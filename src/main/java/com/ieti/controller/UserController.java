@@ -12,7 +12,7 @@ import com.ieti.entities.User;
 import com.ieti.service.UserService;
 
 @RestController
-@RequestMapping( "/users" )
+@RequestMapping( "/v1/user" )
 public class UserController {
 
     private final UserService userService;
