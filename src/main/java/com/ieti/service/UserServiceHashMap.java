@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ieti.entities.User;
 
-@Service
+//@Service
 public class UserServiceHashMap implements UserService{
 
     private HashMap<String, User> usmap = new HashMap<String, User>();
